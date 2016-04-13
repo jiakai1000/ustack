@@ -36,10 +36,17 @@ struct arp_queue_entry {
     TAILQ_ENTRY(arp_queue_entry) arp_link;
 };
 
+static int
+process_request(struct arphdr *arph)
+{
+    return 0;
+}
+
 int
 arp_input(struct rte_mbuf *m)
 {
     struct arphdr *arph;
+    int rc;
 
     arph = rte_pktmbuf_mtod(m, struct arphdr *);
     if (ust_ip_addr != be32toh(arph->ar_tip)) {
@@ -50,6 +57,7 @@ arp_input(struct rte_mbuf *m)
     default:
         break;
     case arp_op_request:
+        rc = process_request(arph);
         break;
     case arp_op_reply:
         break;
@@ -57,7 +65,7 @@ arp_input(struct rte_mbuf *m)
 
 out:
     rte_pktmbuf_free(m);
-    return 0;
+    return rc;
 }
 
 int
