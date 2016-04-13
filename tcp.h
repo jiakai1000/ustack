@@ -16,14 +16,17 @@ typedef enum {
     TCP_SYN,
 } tcp_state_t;
 
-struct tcp_s {
+typedef struct {
     union {
         tcp_connect_cb connect_cb;
         tcp_listen_cb listen_cb;
     };
     tcp_sent_cb sent_cb;
     tcp_recv_cb recv_cb;
+} tcp_cbs_t;
 
+struct tcp_s {
+    tcp_cbs_t *cbs; // callbacks
     tcp_state_t state;
 };
 
