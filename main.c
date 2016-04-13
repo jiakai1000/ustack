@@ -36,6 +36,9 @@
 #include <rte_ring.h>
 #include <rte_mempool.h>
 #include <rte_mbuf.h>
+#include <rte_ip.h>
+
+#include "config.h"
 
 #define NB_MBUF   8192
 
@@ -275,6 +278,7 @@ main(int argc, char **argv)
     l2fwd_pktmbuf_pool = rte_pktmbuf_pool_create("mbuf_pool", NB_MBUF, 32,
         0, RTE_MBUF_DEFAULT_BUF_SIZE, rte_socket_id());
     assert(l2fwd_pktmbuf_pool);
+    ust_pktmbuf_pool = l2fwd_pktmbuf_pool;
 
     nb_ports = rte_eth_dev_count();
     assert(nb_ports > 0 && nb_ports <= RTE_MAX_ETHPORTS);
@@ -313,6 +317,7 @@ main(int argc, char **argv)
             ret, (unsigned)portid);
 
     rte_eth_macaddr_get(portid, &l2fwd_ports_eth_addr[portid]);
+    ust_eth_addr = l2fwd_ports_eth_addr[portid];
 
     /* init one RX queue */
     fflush(stdout);
@@ -355,6 +360,10 @@ main(int argc, char **argv)
     //memset(&port_statistics, 0, sizeof(port_statistics));
 
     check_all_ports_link_status(nb_ports, 1);
+
+    ust_ip_addr = IPv4(192, 168, 192, 22);
+    ust_ip_mask = IPv4(255, 255, 255, 0);
+    ust_ip_gw = IPv4(192, 168, 192, 1);
 
     /* reset l2fwd_dst_ports */
     //for (portid = 0; portid < RTE_MAX_ETHPORTS; portid++)

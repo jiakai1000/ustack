@@ -1,9 +1,16 @@
 #include <rte_ether.h>
+#include "config.h"
 
 int
 arp_input(struct rte_mbuf *mbuf);
 int
 ipv4_input(struct rte_mbuf *mbuf);
+
+int
+eth_init()
+{
+    return 0;
+}
 
 int
 eth_input(struct rte_mbuf *m)

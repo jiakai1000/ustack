@@ -42,8 +42,8 @@ arp_input(struct rte_mbuf *m)
     struct arphdr *arph;
 
     arph = rte_pktmbuf_mtod(m, struct arphdr *);
-    if (ip_addr != arph->ar_tip) {
-        return 0;
+    if (ust_ip_addr != be32toh(arph->ar_tip)) {
+        goto out;
     }
 
     switch (be16toh(arph->ar_op)) {
@@ -55,6 +55,8 @@ arp_input(struct rte_mbuf *m)
         break;
     }
 
+out:
+    rte_pktmbuf_free(m);
     return 0;
 }
 
