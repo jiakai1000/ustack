@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <sys/socket.h>
+#include <rte_tcp.h>
 #include <rte_mbuf.h>
 
 
