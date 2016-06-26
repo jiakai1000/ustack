@@ -112,8 +112,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\arp.c" />
+    <ClCompile Include="..\config.c" />
     <ClCompile Include="..\eth.c" />
+    <ClCompile Include="..\ipv4.c" />
     <ClCompile Include="..\main.c" />
+    <ClCompile Include="..\tcp.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\config.h" />
+    <ClInclude Include="..\tcp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

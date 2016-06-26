@@ -24,5 +24,22 @@
     <ClCompile Include="..\eth.c">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="..\config.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ipv4.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tcp.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\config.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tcp.h">
+      <Filter>Source files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
