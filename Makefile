@@ -43,7 +43,7 @@ include $(RTE_SDK)/mk/rte.vars.mk
 APP = helloworld
 
 # all source are stored in SRCS-y
-SRCS-y := main.c eth.c arp.c
+SRCS-y := main.c config.c eth.c arp.c ipv4.c tcp.c
 
 CFLAGS += -O0 -g
 #CFLAGS += $(WERROR_FLAGS)
