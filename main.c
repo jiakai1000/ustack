@@ -103,8 +103,10 @@ struct l2fwd_port_statistics {
 struct l2fwd_port_statistics port_statistics[RTE_MAX_ETHPORTS];
 
 
-int
-eth_input(struct rte_mbuf *mbuf);
+int eth_init();
+int eth_input(struct rte_mbuf *mbuf);
+
+int arp_init();
 
 static int
 l2fwd_launch_one_lcore(__attribute__((unused)) void *arg)
@@ -369,6 +371,9 @@ main(int argc, char **argv)
     //for (portid = 0; portid < RTE_MAX_ETHPORTS; portid++)
     //    l2fwd_dst_ports[portid] = 0;
     //last_port = 0;
+
+    eth_init();
+    arp_init();
 
 	/* call lcore_hello() on every slave lcore */
 	//RTE_LCORE_FOREACH_SLAVE(lcore_id) {
